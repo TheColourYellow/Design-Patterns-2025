@@ -7,7 +7,7 @@ public class EncryptedPrinter extends PrinterDecorator {
     // https://www.geeksforgeeks.org/python/substitution-cipher/
 
     String allletters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ !";
-    Map<Character, Character> encryptionMap = new HashMap<Character, Character>();
+    Map<Character, Character> encryptionMap = new HashMap<>();
     Map<Character, Character> decryptionMap = new HashMap<>();
 
 

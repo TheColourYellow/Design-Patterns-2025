@@ -25,8 +25,19 @@ public class JokeFacade {
             }
             JSONParser jsonParser = new JSONParser();
             JSONObject jsonObject = (JSONObject) jsonParser.parse(content.toString());
-            return (String) jsonObject.get(attributeName);
-        } catch (ParseException e) {
+            if (jsonObject.containsKey(attributeName)) {
+                return (String) jsonObject.get(attributeName);}
+            else throw new IllegalArgumentException();
+        } catch (IOException | ParseException | IllegalArgumentException e) {
+            if (e instanceof IllegalArgumentException) {
+                System.out.println("Could not find attribute: " + attributeName);
+            }
+            if (e instanceof ParseException) {
+                System.out.println("Failed parsing JSON");
+            }
+            if (e instanceof IOException) {
+                System.out.println("Invalid HTTP");
+            }
             throw new RuntimeException(e);
         } finally {
             con.disconnect();
